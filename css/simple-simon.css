@@ -76,7 +76,7 @@ map {
     width: 20px;
     height: 20px;
     margin-top: 330px;
-    margin-left: 676px;
+    margin-left: 673px;
     padding: 0px;
     z-index: -1;
 }
@@ -84,10 +84,10 @@ map {
 #start {
     /*background-color: yellow;*/
     position: absolute;
-    width: 17px;
-    height: 18px;
-    margin-left: 723px;
-    margin-top: 332px;
+    width: 21px;
+    height: 21px;
+    margin-left: 721px;
+    margin-top: 331px;
 
 }
 
@@ -95,21 +95,20 @@ map {
 .stop {
     background-color: red;
     position: absolute;
-    width: 17px;
-    height: 18px;
-    margin-left: 723px;
-    margin-top: 332px;
+    width: 21px;
+    height: 21px;
+    margin-left: 721px;
+    margin-top: 331px;
 }
 
 #red {
+    background-color: #F53F23;
     position: absolute;
-    width: 450px;
-    height: 450px;
-    /*top: 0;
-    right: 0;
-    border-radius: 0 100% 0 0;*/
-    margin-top: 80px;
-    margin-left: 480px;
+    width: 77px;
+    height: 67px;
+    margin-top: 157px;
+    margin-left: 777px;
+    opacity: 0.2;
     z-index: -1;
 }
 
@@ -174,4 +173,8 @@ map {
     margin-top: 80px;
     margin-left: 480px;
     z-index: -1;
+}
+
+path {
+   background-color: #F53F23;;
 }
