@@ -16,6 +16,25 @@ $(document).ready(function () {
 
 
 
+
+    /* ======================== Create Finite State Machine to handle game logic ==================== */
+    var fsm = StateMachine.create({
+        initial: 'inactive',
+        events: [
+            { name: 'gameStart',  from: 'inactive',  to: 'start' },
+            { name: 'gamePlay', from: 'start', to: 'active'    },
+            { name: 'gameStop',  from: 'active',    to: 'lose' },
+            { name: 'gameWin', from: 'active', to: 'win'  }
+        ]});
+
+
+
+
+    /* ======================== Button to Open Game ==================== */
+    $( "button" ).click(function() {
+        $( "div" ).toggle( "fold", 1000 );
+    });
+
     /* ======================== Random Generator ==================== */
 
 

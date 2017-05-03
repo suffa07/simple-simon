@@ -85,7 +85,7 @@ body {
     z-index: -3;
 }
 
-#redButton {
+#red_btn {
     position: absolute;
     margin-top: 115px;
     margin-left: 432px;
@@ -94,7 +94,7 @@ body {
     z-index: -2;
 }
 
-#greenButton {
+#green_btn {
     position: absolute;
     margin-top: 115px;
     margin-left: 213px;
@@ -103,7 +103,7 @@ body {
     z-index: -2;
 }
 
-#yellowButton {
+#yellow_btn {
     position: absolute;
     margin-top: 332px;
     margin-left: 214px;
@@ -112,7 +112,7 @@ body {
     z-index: -2;
 }
 
-#blueButton {
+#blue_btn {
     position: absolute;
     margin-top: 332px;
     margin-left: 432px;
@@ -123,12 +123,12 @@ body {
 
 /* ======= When user presses button panel will blink ========*/
 .button:active {
-    opacity: .5;
+    opacity: .3;
 }
 
 /* ======== When timer drives pattern panels will light up according to the pattern ==========*/
-.activated {
-    opacity: .5;
+.activated_p {
+    opacity: .3;
 }
 
 #consoleFront {
@@ -167,4 +167,12 @@ body {
     margin-top: 350px;
     margin-left: 359px;
     z-index: -2;
+}
+
+button {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 50px;
+
+
 }
