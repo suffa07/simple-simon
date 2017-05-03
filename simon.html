@@ -1,24 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>simon</title>
+    <title>Simon Game Play</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/simple-simon.css">
 </head>
+
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<!-- Save for Web Slices (simon.psd - Slices: 01, 02, 03, 04) -->
-<table id="Table_01" width="450" height="450" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td>
-			<img src="images/simon_01.png" width="225" height="225" alt=""></td>
-		<td>
-			<img src="images/simon_02.png" width="225" height="225" alt=""></td>
-	</tr>
-	<tr>
-		<td>
-			<img src="images/simon_03.png" width="225" height="225" alt=""></td>
-		<td>
-			<img src="images/simon_04.png" width="225" height="225" alt=""></td>
-	</tr>
-</table>
-<!-- End Save for Web Slices -->
+<span id="counter"></span>
+<div id="start"></div>
+<div id="container">
+    <table id="Table_01" width="450" height="450" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <img src="img/images/simon_01.png" width="225" height="225" alt=""></td>
+            <td>
+                <img src="img/images/simon_02.png" width="225" height="225" alt=""></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="img/images/simon_03.png" width="225" height="225" alt=""></td>
+            <td>
+                <img src="img/images/simon_04.png" width="225" height="225" alt=""></td>
+        </tr>
+    </table>
+    <div class="button" id="buttonRed"></div>
+    <div class="button" id="buttonGre"></div>
+    <div class="button" id="buttonYel"></div>
+    <div class="button" id="buttonBlu"></div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/simple-simon.js"></script>
 </body>
 </html>

@@ -15,13 +15,18 @@ $(document).ready(function () {
 
 
 
+
+    /* ======================== Random Generator ==================== */
+
+
+
     /* ======================== Initialize counter with double hyphens ==================== */
     $('#counter').html('--');
 
 
 
 
-    /* ======================== Temporary Counter ==================== */
+    /* ======================== Use seconds as a temporary counter to validate round count visibility ==================== */
 
 
 
@@ -58,14 +63,14 @@ $(document).ready(function () {
 
 
 
-    /* ======================== Toggle the start button from green to red ==================== */
+    /* ======================== Toggle the start button from green to red and start the counter ==================== */
 
 
     $('#start').click(function () {
         stopTime();
         $(this).effect("highlight", {}, 100);
-        $('.img-circle').toggleClass('stop');
-        if ($('.img-circle').hasClass('stop')) {
+        $('.round-circle').toggleClass('stop');
+        if ($('.round-circle').hasClass('stop')) {
             startTime();
         } else {
             stopTime();
@@ -99,8 +104,8 @@ $(document).ready(function () {
     }
 
 
-    $( document ).click(function() {
-        $( "#red" ).toggle( "highlight" );
+    /*$('#buttonRed').click(function() {
+        $(this).toggleClass('button:active');
     });
-
+*/
 });
