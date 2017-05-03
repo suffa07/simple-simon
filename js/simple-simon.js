@@ -22,37 +22,79 @@ $(document).ready(function () {
     var fsm = StateMachine.create({
         initial: 'menu',
         events: [
+            { name: 'start',  from: 'none',  to: 'menu' },
             { name: 'play',  from: 'menu',  to: 'game' },
             { name: 'quit',  from: 'game',  to: 'menu' },
-            { name: 'level',  from: 'l_one',    to: 'l_two'},
-            { name: 'level',  from: 'l_two',    to: 'l_three'},
-            { name: 'level',  from: 'l_three',    to: 'l_four'}
+            { name: 'level',  from: 'lone',    to: 'ltwo'},
+            { name: 'level',  from: 'ltwo',    to: 'lthree'},
+            { name: 'level',  from: 'lthree',    to: 'lfour'}
         ],
 
         callbacks: {
+            onbbeforego: function (event, from, to) {},
+            onbeforestart: function(event, from, to) {},
+            onstart: function(event, from, to) {alert("Game Started");},
+            onleavestart: function(event, from, to) {alert("Game Ended");},
 
-            onentermenu: function() { $('#menu').show(); },
-            onentergame: function() { $('#game').show(); },
 
-            onleavemenu: function() {
-                $('#menu').fadeOut('fast', function() {
-                    fsm.transition();
-                });
-                return StateMachine.ASYNC; // tell StateMachine to defer next state until we call transition (in fadeOut callback above)
-            },
+            onentermenu: function(event, from, to) { $('#consoleFront').show("Hi, This is Simple Simon"); },
+            onleavemenu: function() { $('#menu').show(); },
+
+            onentergame: function() {$('#game').show(); },
+            onplaygame: function () {},
+
+            onbeforelone: function () {},
+            onlone: function () {},
+            onleavelone: function () {},
+
+            onbeforeltwo: function () {},
+            onltwo: function () {},
+            onleaveltwo: function () {},
+
+            onbeforelthree: function () {},
+            onlthree: function () {},
+            onleavelthree: function () {},
+
+            onbeforelfour: function () {},
+            onlfour: function () {},
+            onleavelfour: function () {},
+
 
             onleavegame: function() {
-                $('#game').slideUp('slow', function() {
+                $('#container').slideUp('slow', function() {
                     fsm.transition();
                 });
                 return StateMachine.ASYNC; // tell StateMachine to defer next state until we call transition (in slideUp callback above)
             }
 
+
         }
 
     });
 
+    var async = function(to) {
+        pending(to, 4);
+        setTimeout(function () {
+            pending(to, 3);
+            setTimeout(function() {
+                pending(to, 2);
+                setTimeout(function () {
+                    pending(to, 1);
+                    setTimeout(function () {
+                        fsm.transition(); // trigger deferred state transition
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    };
 
+    var pending = function(to, n) { console.log("PENDING STATE: " + to + " in ..." + n); };
+
+
+    fsm.play();
+    fsm.onentermenu();
+    async();
+    return fsm;
 
 
     /* will create an object with a method for each event:
@@ -73,14 +115,14 @@ $(document).ready(function () {
      * fsm.states()      - return list of all possible states.
 
 
-     */
+
 
 
 
     /* ======================== Button to Open Game ==================== */
 
     $( "button" ).click(function() {
-        $( "div" ).toggle( "fold", 1000 );
+        $( "#container" ).toggle( "fold", 1000 );
     });
 
 
@@ -155,7 +197,7 @@ $(document).ready(function () {
 
 
 
-/* ======================== Logic for catching user sequence into an array ==================== */
+/* ======================== Logic for creating panel sequence into an array ==================== */
 
     function newMemory() {
         var temp_mem = Math.floor((Math.random() * 4) + 1);
