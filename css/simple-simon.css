@@ -40,7 +40,7 @@
     z-index: -1;
 }
 
-#start {
+#start.round-circle {
     background-color: green;
     position: absolute;
     width: 23px;
@@ -48,8 +48,6 @@
     border-radius: 50%;
     margin-left: 425px;
     margin-top: 355px;
-
-
 }
 
 
@@ -58,9 +56,9 @@
     position: absolute;
     width: 23px;
     height: 23px;
-    margin-left: 682px;
-    margin-top: 350px;
-
+    border-radius: 50%;
+    margin-left: 425px;
+    margin-top: 355px;
 }
 
 

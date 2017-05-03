@@ -18,24 +18,76 @@ $(document).ready(function () {
 
 
     /* ======================== Create Finite State Machine to handle game logic ==================== */
-    var fsm = StateMachine.create({
-        initial: 'inactive',
-        events: [
-            { name: 'gameStart',  from: 'inactive',  to: 'start' },
-            { name: 'gamePlay', from: 'start', to: 'active'    },
-            { name: 'gameStop',  from: 'active',    to: 'lose' },
-            { name: 'gameWin', from: 'active', to: 'win'  }
-        ]});
 
+    var fsm = StateMachine.create({
+        initial: 'menu',
+        events: [
+            { name: 'play',  from: 'menu',  to: 'game' },
+            { name: 'quit',  from: 'game',  to: 'menu' },
+            { name: 'level',  from: ['1', '2', '3', '4'],    to: ['game', 'menu'] }
+
+        ],
+
+        callbacks: {
+
+            onentermenu: function() { $('#menu').show(); },
+            onentergame: function() { $('#game').show(); },
+
+            onleavemenu: function() {
+                $('#menu').fadeOut('fast', function() {
+                    fsm.transition();
+                });
+                return StateMachine.ASYNC; // tell StateMachine to defer next state until we call transition (in fadeOut callback above)
+            },
+
+            onleavegame: function() {
+                $('#game').slideUp('slow', function() {
+                    fsm.transition();
+                });
+                return StateMachine.ASYNC; // tell StateMachine to defer next state until we call transition (in slideUp callback above)
+            }
+
+        }
+
+    });
+
+
+
+
+    /* will create an object with a method for each event:
+
+
+     * fsm.play() - transition from 'menu'  to  'game'
+     * fsm.quit()  - transition from 'game'  to  'menu'
+     * * fsm.level()  - transition from '1,..4'  to  'game' or 'menu'
+
+
+     along with the following members:
+
+     * fsm.current       - contains the current state
+     * fsm.is(s)         - return true if state `s` is the current state
+     * fsm.can(e)        - return true if event `e` can be fired in the current state
+     * fsm.cannot(e)     - return true if event `e` cannot be fired in the current state
+     * fsm.transitions() - return list of events that are allowed from the current state
+     * fsm.states()      - return list of all possible states.
+
+
+     */
 
 
 
     /* ======================== Button to Open Game ==================== */
+
     $( "button" ).click(function() {
         $( "div" ).toggle( "fold", 1000 );
     });
 
-    /* ======================== Random Generator ==================== */
+
+
+    /* ======================== Random Generator (generate numbers 1 - 4 ==================== */
+
+    var rand = Math.floor(Math.random() * (4 - 1) + 1);
+
 
 
 
@@ -89,7 +141,7 @@ $(document).ready(function () {
         stopTime();
         $(this).effect("highlight", {}, 100);
         $('.round-circle').toggleClass('stop');
-        if ($('.round-circle').hasClass('stop')) {
+        if ($('#start').hasClass('stop')) {
             startTime();
         } else {
             stopTime();
@@ -123,8 +175,4 @@ $(document).ready(function () {
     }
 
 
-    /*$('#buttonRed').click(function() {
-        $(this).toggleClass('button:active');
-    });
-*/
 });
