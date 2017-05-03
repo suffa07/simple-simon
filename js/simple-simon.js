@@ -24,8 +24,9 @@ $(document).ready(function () {
         events: [
             { name: 'play',  from: 'menu',  to: 'game' },
             { name: 'quit',  from: 'game',  to: 'menu' },
-            { name: 'level',  from: ['1', '2', '3', '4'],    to: ['game', 'menu'] }
-
+            { name: 'level',  from: 'l_one',    to: 'l_two'},
+            { name: 'level',  from: 'l_two',    to: 'l_three'},
+            { name: 'level',  from: 'l_three',    to: 'l_four'}
         ],
 
         callbacks: {
