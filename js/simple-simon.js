@@ -76,7 +76,6 @@ $(document).ready(function () {
     }
 
     function startTime() {
-        var t, S;
         var today = new Date();
         var h = today.getHours();
         var m = today.getMinutes();
@@ -122,7 +121,7 @@ $(document).ready(function () {
                 gamePanel.push("Blue");
                 break;
         }
-        // console.log(gamePanel);
+
     }
 
 
@@ -155,7 +154,7 @@ $(document).ready(function () {
                 $('#container').slideUp('slow', function() {
                     fsm.transition();
                 });
-                return StateMachine.ASYNC; // tell StateMachine to defer next state until we call transition (in slideUp callback above)
+                return StateMachine.ASYNC;
             },
 
 
@@ -172,7 +171,7 @@ $(document).ready(function () {
 
 
             onlfour: function () {},
-            onleavelfour: function () {},
+            onleavelfour: function () {}
 
 
         }
@@ -216,30 +215,24 @@ $(document).ready(function () {
             clearInterval((int_id));
         } else {
             newMemory();
-            // $( ".button" ).effect("highlight", {}, 80);
-            // console.log(count);
             var panelColor = gamePanel[count];
+
             switch (gamePanel[count]) {
 
                 case 'Blue':
                     $( "#blue_btn" ).effect("highlight", {}, 80);
-                    userResponse();
                     break;
                 case 'Green':
                     $( "#green_btn" ).effect("highlight", {}, 80);
-
                     break;
                 case 'Red':
                     $( "#red_btn" ).effect("highlight", {}, 80);
-
                     break;
                 case 'Yellow':
                     $( "#yellow_btn" ).effect("highlight", {}, 80);
-
                     break;
                 }
             count++;
-
 
             }
 
@@ -248,12 +241,12 @@ $(document).ready(function () {
     }, interval);
 
 
-    function userResponse() {
+    /*function userResponse() {
         $('.button').click(function () {
             panelSelect = (this).id;
         });
 
-        /* ====== After a color panel blinks, the user has 5 seconds to respond, or  ... game over ====*/
+        /!* ====== After a color panel blinks, the user has 5 seconds to respond, or  ... game over ====*!/
 
         while (!panelSelect) {
             setTimeout( function () {
@@ -262,7 +255,7 @@ $(document).ready(function () {
         }
         alert(panelSelect);
 
-    }
+    }*/
 
 
     /* will create an object with a method for each event:
