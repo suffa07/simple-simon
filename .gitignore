@@ -1,3 +1,5 @@
 .idea/
 *.iml
 !/simple-simon.iml
+/simple-simon.iml
+/js/simple-simon.js
