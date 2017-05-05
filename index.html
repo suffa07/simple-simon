@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Simple Simon</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Simon Game Play</title>
+    <meta charset=utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="css/simple-simon.css">
 </head>
-    <body>
-        <div id="title"></div>
-        <div class="menu" id="game-start"></div>
-        <div class="menu" id="game-win"></div>
-        <div class="menu" id="game-lose"></div>
-        <div class="menu" id="game-exit"></div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="js/simple-simon.js"></script>
-    </body>
+<body>
+<button>Play Game</button>
+
+
+
+
+
+<div class="container">
+    <span data-round="0" id="counter"></span>
+    <div data-action="start" class="round-circle" id="start"></div>
+    <div class="button" data-panel="1" id="red_btn"></div>
+    <div class="button" data-panel="2" id="green_btn"></div>
+    <div class="button" data-panel="3" id="yellow_btn"></div>
+    <div class="button" data-panel="4" id="blue_btn"></div>
+    <div id="consoleFront"></div>
+    <div id="consoleBack"></div>
+    <div id="counterWindow"></div>
+
+</div>
+<p data-action="lose">Sorry, you lost after <span data-round="0"></span>rounds!</p>
+
+
+<!--<script src="js/jquery.min.js"></script>-->
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/knockout-3.4.2.js"></script>
+<script src="js/simple-simon.js"></script>
+
+</body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <title>Simon Game Play</title>
     <meta charset=utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
@@ -16,24 +17,28 @@
 
 
 
-<div id="container">
-    <span id="counter"></span>
-    <div class="round-circle" id="start"></div>
-    <div class="button" id="red_btn"></div>
-    <div class="button" id="green_btn"></div>
-    <div class="button" id="yellow_btn"></div>
-    <div class="button" id="blue_btn"></div>
+<div class="container">
+    <span data-round="0" id="counter"></span>
+    <div data-action="start" class="round-circle" id="start"></div>
+    <div class="button" data-panel="1" id="red_btn"></div>
+    <div class="button" data-panel="2" id="green_btn"></div>
+    <div class="button" data-panel="3" id="yellow_btn"></div>
+    <div class="button" data-panel="4" id="blue_btn"></div>
     <div id="consoleFront"></div>
     <div id="consoleBack"></div>
     <div id="counterWindow"></div>
 
 </div>
+    <p data-action="lose">Sorry, you lost after <span data-round="0"></span>rounds!</p>
 
 
-    <script src="js/jquery.min.js"></script>
+    <!--<script src="js/jquery.min.js"></script>-->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src='js/state-machine.js'></script>
     <script src="js/knockout-3.4.2.js"></script>
     <script src="js/simple-simon.js"></script>
 

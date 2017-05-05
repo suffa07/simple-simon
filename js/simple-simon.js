@@ -5,23 +5,20 @@
 $(document).ready(function () {
     "use strict";
 
-    /* ======================== Global Variables ==================== */
 
-    var panelPatternCounter = 0;
-    var gamemode = false;
-    var level = 1;
-    var gamePanel = [];
-    var pressedBtn;
-    var mytime;
-    var panelSelect;
+        /* ======================== Global Variables ==================== */
 
 
+        var sequence = [];
+        var copy = [];
+        var round = 0;
+        var active = true;
 
 
-    /* ======================== Button to Open Game ==================== */
+        /* ======================== Button to Display Game ==================== */
 
-    $( "button" ).click(function() {
-        $( "#container" ).toggle( "bounce", 1000 );
+        $("button").click(function () {
+        $(".container").toggle("bounce", 1000);
     });
 
 
@@ -29,252 +26,175 @@ $(document).ready(function () {
         $(this).effect("highlight", {}, 80);
     });
 
-    /*pressedBtn = $('.button').click(function (event) {
-        alert(this.id);*/
-
-    });
-
-
-
-
-
 
     /* ======================== Toggle the start button from green to red and start the counter ==================== */
 
 
     $('#start').click(function () {
-        stopTime();
         $(this).effect("highlight", {}, 100);
-        $(this).toggleClass('stop');
-        if ($('#start').hasClass('stop')) {
-            startTime();
-        } else {
-            stopTime();
-            $('#counter').html('--');
-        }
-    });
-
-
-
-
-    /* ======================== Initialize counter with double hyphens ==================== */
-    $('#counter').html('--');
-
-
-
-
-    /* ======================== Use seconds as a temporary counter to validate round count visibility ==================== */
-
-
-
-    // add a zero in front of numbers<10
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i;
-        }
-        return i;
-    }
-
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        // Turn seconds into ticker just to test round count
-
-        s = checkTime(s);
-        $('#counter').html(s);
-        mytime = setTimeout(function() {
-            startTime();
-        }, 500);
-    }
-
-    function stopTime() {
-        clearTimeout(mytime);
-    }
-
-
-
-
-
-
-
-
-
-
-
-/* ======================== Random generator for color panel ==================== */
-
-    function newMemory() {
-        var temp_mem = Math.floor((Math.random() * 4) + 1);
-        switch(temp_mem) {
-            case 1:
-                gamePanel.push("Green");
-                break;
-            case 2:
-                gamePanel.push("Red");
-                break;
-            case 3:
-                gamePanel.push("Yellow");
-                break;
-            case 4:
-                gamePanel.push("Blue");
-                break;
-        }
-
-    }
-
-
-
-    /* ======================== Create Finite State Machine to handle game logic ==================== */
-
-    var fsm = StateMachine.create({
-        initial: 'menu',
-        events: [
-            { name: 'start',  from: 'none',  to: 'menu' },
-            { name: 'play',  from: 'menu',  to: 'game' },
-            { name: 'quit',  from: 'game',  to: 'menu' },
-            { name: 'level',  from: 'lone',    to: 'ltwo'},
-            { name: 'level',  from: 'ltwo',    to: 'lthree'},
-            { name: 'level',  from: 'lthree',    to: 'lfour'}
-        ],
-
-        callbacks: {
-            onstart: function(event, from, to) {alert("Game Started");},
-            onleavestart: function(event, from, to) {alert("Game Ended");},
-
-
-
-            onmenu: function(event, from, to) { alert("Hi, This is Simple Simon... transitioned from " + from + " to "  + to); },
-            onleavemenu: function() { $('#menu').show(); },
-
-            onentergame: function() {$('#game').show(); },
-            ongame: function (event, from, to) {},
-            onleavegame: function() {
-                $('#container').slideUp('slow', function() {
-                    fsm.transition();
-                });
-                return StateMachine.ASYNC;
-            },
-
-
-            onlone: function () {},
-            onleavelone: function () {},
-
-
-            onltwo: function () {},
-            onleaveltwo: function () {},
-
-
-            onlthree: function () {},
-            onleavelthree: function () {},
-
-
-            onlfour: function () {},
-            onleavelfour: function () {}
-
-
-        }
+        $('.round-circle').toggleClass("stop");
 
     });
 
-    /*var async = function(to) {
-        pending(to, 4);
-        setTimeout(function () {
-            pending(to, 3);
-            setTimeout(function() {
-                pending(to, 2);
-                setTimeout(function () {
-                    pending(to, 1);
-                    setTimeout(function () {
-                        // fsm.transition(); // trigger deferred state transition
-                    }, 5000);
-                }, 5000);
-            }, 5000);
-        }, 5000);
-    };
-*/
-
-    // newMemory();
-    // var pending = function(to, n) { console.log("PENDING STATE: " + to + " in ..." + n); };
 
 
-    /*fsm.play();
-    fsm.onmenu();
-    async();
-    return fsm;*/
-    // return fsm;
-
-    var count = 0;
-    var max = 20;
-    var interval = 1000;
+        /* ======================== Implement a clock/timer: future endeavor ==================== */
 
 
-    var int_id = setInterval(function () {
-        if (count >= max) {
-            clearInterval((int_id));
-        } else {
-            newMemory();
-            var panelColor = gamePanel[count];
+        // add a zero in front of numbers<10
+        /* function checkTime(i) {
+         if (i < 10) {
+         i = "0" + i;
+         }
+         return i;
+         }
 
-            switch (gamePanel[count]) {
+         function startTime() {
+         var today = new Date();
+         var h = today.getHours();
+         var m = today.getMinutes();
+         var s = today.getSeconds();
+         // Turn seconds into ticker just to test round count
 
-                case 'Blue':
-                    $( "#blue_btn" ).effect("highlight", {}, 80);
-                    break;
-                case 'Green':
-                    $( "#green_btn" ).effect("highlight", {}, 80);
-                    break;
-                case 'Red':
-                    $( "#red_btn" ).effect("highlight", {}, 80);
-                    break;
-                case 'Yellow':
-                    $( "#yellow_btn" ).effect("highlight", {}, 80);
-                    break;
+         s = checkTime(s);
+         $('#counter').html(s);
+         mytime = setTimeout(function () {
+         startTime();
+         }, 500);
+         }
+
+         function stopTime() {
+         clearTimeout(mytime);
+         }*/
+
+
+        /* =========== Sound: future endeavor==============*/
+
+
+
+        /* ======================== Initialize the game to start ==================== */
+
+
+        function init () {
+            $('#counter').html("--");
+            $('#start').click(function () {
+                $('#counter').html('0');
+                gameStart();
+            });
+
+        }
+
+
+
+    /* ======================== Sets initial round and every subsequent one ==================== */
+
+        function playround () {
+            $('#counter').html(++round);
+            sequence.push(randomNum());
+            copy = sequence.slice(0);
+            pattern(sequence);
+        }
+
+
+    /* ======================== Generate the Panel Pattern ==================== */
+        function pattern (sequence) {
+            var i = 0;
+            var interval = setInterval(function () {
+                triggerPanel(sequence[i]);
+                i++;
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                    activeBoard();
                 }
-            count++;
+            }, 700);
+        }
 
+
+
+
+    /* ======================== Use JQuery UI hightlight effect to cause panels to blink ==================== */
+        function triggerPanel (tile) {
+                $('[data-panel=' + tile + ']').effect("highlight", {}, 80);;
+                window.setTimeout(function () {
+                }, 300);
             }
 
 
 
-    }, interval);
-
-
-    /*function userResponse() {
-        $('.button').click(function () {
-            panelSelect = (this).id;
-        });
-
-        /!* ====== After a color panel blinks, the user has 5 seconds to respond, or  ... game over ====*!/
-
-        while (!panelSelect) {
-            setTimeout( function () {
-
-            }, 5000);
+    /* ======================== Initialize game variables  ==================== */
+        function gameStart () {
+            sequence = [];
+            copy = [];
+            round = 0;
+            active = true;
+            $('p[data-action="lose"]').hide();
+            playround();
         }
-        alert(panelSelect);
-
-    }*/
 
 
-    /* will create an object with a method for each event:
+
+        function checkUserpat(eID) {
+            var appResponse = copy.shift();
+            var userResponse = eID;
+            active = (appResponse === userResponse);
+            checkLose();
+
+        }
 
 
-     - fsm.play() - transition from 'menu'  to  'game'
-     - fsm.quit()  - transition from 'game'  to  'menu'
-     - * fsm.level()  - transition from '1,..4'  to  'game' or 'menu'
+        function checkLose() {
+            if (copy.length === 0 && active) {
+                inactiveBoard();
+                playround();
+
+            } else if (!active) { // user lost
+                inactiveBoard();
+                endGame();
+            }
+        }
+
+    /* ======================== Exit the game, set round to 0, and toggle green button to start ==================== */
+
+        function endGame() {
+            $('p[data-action=lose]').show();
+            $($('[data-round]').get(0)).text('0');
+            $('.round-circle').toggleClass("stop");
+        }
 
 
-     along with the following members:
 
-     - fsm.current       - contains the current state
-     - fsm.is(s)         - return true if state `s` is the current state
-     - fsm.can(e)        - return true if event `e` can be fired in the current state
-     - fsm.cannot(e)     - return true if event `e` cannot be fired in the current state
-     - fsm.transitions() - return list of events that are allowed from the current state
-     - fsm.states()      - return list of all possible states. */
+        function activeBoard() {
+            $('.button').click(function () {
+                var pid = $(this).attr('data-panel');
+                checkUserpat(pid);
+                $(this).addClass('active');
+                $(this).removeClass('active');
+                $(this).addClass('point');
 
+            });
+
+        }
+
+
+    /* ======================== Generate random number to drive panel pattern ==================== */
+
+        function randomNum() {
+            // between 1 and 4
+            return Math.floor((Math.random() * 4) + 1);
+        }
+
+
+        function inactiveBoard() {
+            $('.button').click(function () {
+                $(this).off('click');
+                $(this).removeClass('hoverable');
+
+            });
+
+
+        }
+
+        init();
 
 
 });
