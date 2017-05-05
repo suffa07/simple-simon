@@ -89,15 +89,19 @@ $(document).ready(function () {
     /* ======================== Sets initial round and every subsequent one ==================== */
 
         function playround () {
+            console.log("play round fired");
             $('#counter').html(++round);
             sequence.push(randomNum());
             copy = sequence.slice(0);
+            console.log("Current sequence:" + sequence);
             pattern(sequence);
         }
 
 
+
     /* ======================== Generate the Panel Pattern ==================== */
         function pattern (sequence) {
+            console.log("Pattern function fired");
             var i = 0;
             var interval = setInterval(function () {
                 triggerPanel(sequence[i]);
@@ -114,10 +118,11 @@ $(document).ready(function () {
 
     /* ======================== Use JQuery UI hightlight effect to cause panels to blink ==================== */
         function triggerPanel (tile) {
-                $('[data-panel=' + tile + ']').effect("highlight", {}, 80);;
+                $('[data-panel=' + tile + ']').effect("highlight", {}, 80);
                 window.setTimeout(function () {
                 }, 300);
             }
+
 
 
 
@@ -132,8 +137,10 @@ $(document).ready(function () {
         }
 
 
+    /* ======================== Checks to see if the user pattern matches the application pattern==================== */
 
         function checkUserpat(eID) {
+            console.log("Check user pat fired");
             var appResponse = copy.shift();
             var userResponse = eID;
             active = (appResponse === userResponse);
@@ -141,9 +148,13 @@ $(document).ready(function () {
 
         }
 
+    /* ======================== Check to see if user will continue to the next round or end the game  ==================== */
 
         function checkLose() {
-            if (copy.length === 0 && active) {
+            console.log("Check lose fired");
+            console.log(active);
+            if (copy.length === 1 && active) {
+                console.log("Check lose fired and next round condition");
                 inactiveBoard();
                 playround();
 
@@ -165,6 +176,7 @@ $(document).ready(function () {
 
         function activeBoard() {
             $('.button').click(function () {
+                console.log("Click fired");
                 var pid = $(this).attr('data-panel');
                 checkUserpat(pid);
                 $(this).addClass('active');
@@ -193,6 +205,8 @@ $(document).ready(function () {
 
 
         }
+
+    /* ======================== Initialize Game ==================== */
 
         init();
 
