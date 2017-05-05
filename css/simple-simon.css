@@ -17,7 +17,6 @@
     margin-top: 350px;
     margin-left: 369px;
     padding: 0px;
-    /*pointer-events: none;*/
     z-index: -1;
 }
 
@@ -63,7 +62,7 @@ body {
 .button {
     width: 204px;
     height: 204px;
-    /*pointer-events: none;*/
+
 }
 
 .container {
@@ -178,24 +177,7 @@ button {
     src: url('digital-7.regular.ttf');
 }
 
-/*
-.tile {
-    opacity: 0.6;
-    -webkit-transition: opacity 250ms ease;
-    -moz-transition: opacity 250ms ease;
-    -ms-transition: opacity 250ms ease;
-    -o-transition: opacity 250ms ease;
-    transition: opacity 250ms ease;
-}
 
-.tile {
-    opacity: 1;
-}
-
-.lit {
-    opacity: .1;
-
-}*/
 .point:hover {
     cursor: pointer;
 }

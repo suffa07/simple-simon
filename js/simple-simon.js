@@ -142,7 +142,7 @@ $(document).ready(function () {
         function checkUserpat(eID) {
             console.log("Check user pat fired");
             var appResponse = copy.shift();
-            var userResponse = eID;
+            var userResponse = parseInt(eID);
             active = (appResponse === userResponse);
             checkLose();
 
@@ -153,7 +153,7 @@ $(document).ready(function () {
         function checkLose() {
             console.log("Check lose fired");
             console.log(active);
-            if (copy.length === 1 && active) {
+            if (copy.length === 0 && active) {
                 console.log("Check lose fired and next round condition");
                 inactiveBoard();
                 playround();
@@ -199,7 +199,7 @@ $(document).ready(function () {
         function inactiveBoard() {
             $('.button').click(function () {
                 $(this).off('click');
-                $(this).removeClass('hoverable');
+                $(this).removeClass('point');
 
             });
 
